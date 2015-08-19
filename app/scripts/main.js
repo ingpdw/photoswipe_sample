@@ -1,9 +1,40 @@
 'use strict';
 
-var angular = require('angular'); // That's right! We can just require angular as if we were in node
+var angular = require( 'angular' ); /*require( 'angularjs-ie8-build' );*/
+require( 'ng-infinite-scroll' );
 
-var WelcomeCtrl = require('./controllers/WelcomeCtrl'); // We can use our WelcomeCtrl.js as a module. Rainbows.
+var controllers = angular.module('controllers', []),
+    directives = angular.module('directives', []),
+    services = angular.module('services', []);
+    //filters = angular.module('filters', []);
 
-var app = angular.module('myApp', []);
+angular.module( 'viewer',
+  [ 'infinite-scroll', 'controllers', 'directives', 'services' ]);
 
-app.controller('WelcomeCtrl', ['$scope', WelcomeCtrl]);
+/*
+ * services
+ */
+
+services.service( '$util_',
+ require( './services/util' ));
+
+services.service( '$s_',
+  ['$http', '$q', '$util_', require( './services/service' )]);
+
+/*
+ * controllers
+ */
+controllers.controller( 'viewerCtrl',
+  ['$scope', '$s_', require( './controllers/viewerCtrl' )]);
+
+/*
+ * directives
+ */
+directives.directive( 'sbDirective',
+  require( './directives/directive' ));
+
+directives.directive( 'sbImage',
+  require( './directives/image' ));
+
+directives.directive( 'sbViewer',
+  ['$s_', require( './directives/viewer' )]);

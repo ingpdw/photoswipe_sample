@@ -4,11 +4,11 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
     rimraf = require('gulp-rimraf'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer');
 
-// Modules for webserver and livereload
 var express = require('express'),
     refresh = require('gulp-livereload'),
     livereload = require('connect-livereload'),
@@ -21,14 +21,38 @@ var server = express();
 server.use(livereload({port: livereloadport}));
 // Use our 'dist' folder as rootfolder
 server.use(express.static('./dist'));
+
+server.get('/data', function(req, res) {
+  var i = 1, len = 20, four = 4, tempData = [];
+  var _size = [
+    {w: '633', h: '633'},
+    {w: '949', h: '633'},
+    {w: '919', h: '613'},
+    {w: '919', h: '613'}
+  ];
+
+  for( ;len > i; i++ ){
+    var m = i % four,
+        s = _size[ m ];
+
+    tempData.push({
+      src: '/temp/temp'+ m +'.jpg',
+      w: s.w,
+      h: s.h
+    })
+  };
+
+  res.json( tempData );
+});
+
 // Because I like HTML5 pushstate .. this redirects everything back to our index.html
-server.all('/*', function(req, res) {
+server.get('/', function(req, res) {
   res.sendfile('index.html', { root: 'dist' });
 });
 
 // Dev task
-gulp.task('dev', ['clean', 'views', 'styles', 'lint', 'browserify'], function() { });
-
+gulp.task('live', ['views', /*'styles',*/ 'lint', 'browserify'], function() {});
+gulp.task('dev', ['views', 'temp','lint', 'browserify'], function() {});
 // Clean task
 gulp.task('clean', function() {
 	gulp.src('./dist/views', { read: false }) // much faster
@@ -43,15 +67,15 @@ gulp.task('lint', function() {
 });
 
 // Styles task
-gulp.task('styles', function() {
-  gulp.src('app/styles/*.scss')
-  // The onerror handler prevents Gulp from crashing when you make a mistake in your SASS
-  .pipe(sass({onError: function(e) { console.log(e); } }))
-  // Optionally add autoprefixer
-  .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 8'))
-  // These last two should look familiar now :)
-  .pipe(gulp.dest('dist/css/'));
-});
+// gulp.task('styles', function() {
+//   gulp.src('app/styles/*.scss')
+//   // The onerror handler prevents Gulp from crashing when you make a mistake in your SASS
+//   .pipe(sass({onError: function(e) { console.log(e); } }))
+//   // Optionally add autoprefixer
+//   .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 8'))
+//   // These last two should look familiar now :)
+//   .pipe(gulp.dest('dist/css/'));
+// });
 
 // Browserify task
 gulp.task('browserify', function() {
@@ -61,24 +85,31 @@ gulp.task('browserify', function() {
     insertGlobals: true,
     debug: false
   }))
-  // Bundle to a single file
   .pipe(concat('bundle.js'))
-  // Output it to our dist folder
+  //.pipe(uglify())
   .pipe(gulp.dest('dist/js'));
 });
 
 // Views task
 gulp.task('views', function() {
-  // Get our index.html
   gulp.src('app/index.html')
-  // And put it in the dist folder
   .pipe(gulp.dest('dist/'));
 
-  // Any other view files from app/views
   gulp.src('app/views/**/*')
-  // Will be put in the dist/views folder
   .pipe(gulp.dest('dist/views/'));
+
+  gulp.src('app/images/**/*')
+  .pipe(gulp.dest('dist/images/'));
+
+  gulp.src('app/styles/**/*')
+  .pipe(gulp.dest('dist/styles/'));
 });
+
+gulp.task('temp', function() {
+  gulp.src('app/temp/**/*')
+  .pipe(gulp.dest('dist/temp/'));
+});
+
 
 gulp.task('watch', ['lint'], function() {
   // Start webserver
@@ -92,9 +123,9 @@ gulp.task('watch', ['lint'], function() {
     'browserify'
   ]);
   // Watch our sass files
-  gulp.watch(['app/styles/**/*.scss'], [
-    'styles'
-  ]);
+  // gulp.watch(['app/styles/**/*.scss'], [
+  //   'styles'
+  // ]);
 
   gulp.watch(['app/**/*.html'], [
     'views'
@@ -104,4 +135,4 @@ gulp.task('watch', ['lint'], function() {
 
 });
 
-gulp.task('default', ['dev', 'watch']);
+gulp.task('default', ['live', 'watch']);

@@ -1,21 +1,30 @@
-## Example Boilerplate
 
-This is an example Boilerplate for using Angular, Gulp, Browserify and a local webserver with LiveReload.
+### install
+* npm install
 
-It's part of the blog post at http://mindthecode.com/lets-build-an-angularjs-app-with-browserify-and-gulp
+#### node_modules/angular의 package.json수정
+```
+"main": "index.js",
+```
 
-# Attention - Frickle
+#### node_modules/angular에 index.js추가
+```
+require('./angular');
+module.exports = angular;
+```
 
-I won't be actively maintaining this repository, to keep it compatible with the tutorial on Mindthecode, so if you want a more up to date and advanced boilerplate with the above +more you are better off cloning https://github.com/Hyra/Frickle/
+### run
+* npm install gulp -g
+* gulp
 
-## Installation
+* localhost:5000에서 확인
 
-    git clone https://github.com/Hyra/angular-gulp-browserify-livereload-boilerplate/ example-app
+### libs
+* angular + browserify
+* package.json참조
 
-    cd example-app
+### 앱 시작 파일
+* app/scripts/main.js
 
-    npm install
-
-    gulp dev
-
-    
+### 이슈
+* IE8지원을 위해 angular1.2.28버전 사용

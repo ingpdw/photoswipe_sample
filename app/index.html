@@ -1,16 +1,31 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en">
 <head>
-  <title>My awesome app</title>
-  <link rel="stylesheet" href="css/main.css" />
+  <title>viewer</title>
+  <link rel="stylesheet" href="styles/photoswipe.css" />
+  <link rel="stylesheet" href="styles/default-skin/default-skin.css" />
+
+  <style>
+    .fixed{overflow:auto}
+    ul, li {list-style-type: none;}
+  </style>
 </head>
-<body ng-controller='WelcomeCtrl'>
+<body ng-app="viewer">
+  <div ng-controller='viewerCtrl'>
 
-  <h1>My awesome app</h1>
+    <div class="">
+      <ul infinite-scroll="loadMore()"
+          infinite-scroll-distance="1">
+        <li ng-repeat="item in items">
+          <span sb-image data-index="{{$index}}"></span>
+        </li>
+      </ul>
 
-  <p>{{testVar}}</p>
+      <div ng-show='busy'>Loading data...</div>
+    </div>
+    <div sb-viewer></div>
+  </div>
 
   <script src="/js/bundle.js"></script>
-
 </body>
 </html>
