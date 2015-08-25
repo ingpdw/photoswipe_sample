@@ -14,6 +14,7 @@
     "gulp-jshint": "~1.5.5",
     "gulp-livereload": "~2.1.0",
     "gulp-rimraf": "~0.1.0",
+    "gulp-sass": "^2.0.4",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "~2.2.14",
     "jquery": "~1.11.3",
@@ -25,7 +26,8 @@
   "dependencies": {
     "angular": "^1.2.28",
     "angularjs-ie8-build": "^1.4.0",
-    "jquery": "~1.11.3",
+    "jquery": "^1.11.3",
+    "jquery-ui": "^1.10.5",
     "ng-infinite-scroll": "^1.2.0",
     "photoswipe": "^4.1.0"
   }

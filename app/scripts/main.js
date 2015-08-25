@@ -37,4 +37,7 @@ directives.directive( 'sbImage',
   require( './directives/image' ));
 
 directives.directive( 'sbViewer',
-  ['$s_', require( './directives/viewer' )]);
+  ['$s_', require( './directives/fb-viewer' )]);
+
+// directives.directive( 'sbViewer',
+//   ['$s_', require( './directives/viewer' )]);

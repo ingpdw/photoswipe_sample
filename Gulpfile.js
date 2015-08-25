@@ -51,7 +51,7 @@ server.get('/', function(req, res) {
 });
 
 // Dev task
-gulp.task('live', ['views', /*'styles',*/ 'lint', 'browserify'], function() {});
+gulp.task('live', ['views', 'lint', 'browserify'], function() {});
 gulp.task('dev', ['views', 'temp','lint', 'browserify'], function() {});
 // Clean task
 gulp.task('clean', function() {
@@ -103,6 +103,9 @@ gulp.task('views', function() {
 
   gulp.src('app/styles/**/*')
   .pipe(gulp.dest('dist/styles/'));
+
+  gulp.src('app/libs/**/*')
+  .pipe(gulp.dest('dist/libs/'));
 });
 
 gulp.task('temp', function() {
@@ -127,7 +130,7 @@ gulp.task('watch', ['lint'], function() {
   //   'styles'
   // ]);
 
-  gulp.watch(['app/**/*.html'], [
+  gulp.watch(['app/**/*.html', 'app/libs/**/*' ], [
     'views'
   ]);
 
