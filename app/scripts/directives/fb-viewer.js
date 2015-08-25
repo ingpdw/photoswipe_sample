@@ -5,8 +5,8 @@
  */
 module.exports = function( $s_ ) {
 
-
   var $ = require('../../libs/FBPhotoBox/js/fbphotobox.js' );
+  //var $ = require('../../libs/FBPhotoBox/js/fbphotobox_not_anim.js' );
 
   return {
     restrict: 'ACE',
@@ -25,7 +25,7 @@ module.exports = function( $s_ ) {
 
           console.log( $( this )[ 0 ] );
 
-  				$( '.fbphotobox-image-content' ).html('<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><div>'+ $( this ).attr( 'data-img-id' )+'</div>');
+  				$( '.fbphotobox-image-content' ).html('<div>'+ $( this ).attr( 'data-img-id' )+'</div>');
   			}
       });
 

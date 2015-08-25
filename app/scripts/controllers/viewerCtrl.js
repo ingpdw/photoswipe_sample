@@ -12,6 +12,8 @@ module.exports =  function( $scope, $s_ ) {
 
   $scope.items = [];
 
+  console.log( $ );
+
   //TODO test
   $scope.loadMore = function() {
     console.log( dummmmmmmy );

@@ -1,8 +1,10 @@
 (function($) {
 
-	var $ = require( 'jquery' );
+	// var $ = require( 'jquery' );
+	//
+	// require('jquery-ui');
 
-	require('jquery-ui');
+	console.log( $ );
 
 	function FBPhotoBox(opts) {
 		this.settings = $.extend({}, $.fn.fbPhotoBox.defaults, opts);
@@ -251,7 +253,7 @@
 			}
 
 			rightContainer.css("height", leftContainer.height());
-			$(".fbphotobox-image-content").css("height", leftContainer.height() - $(".fbphotobox-close-btn").height() - 200);
+			$(".fbphotobox-image-content").css("height", leftContainer.height() - $(".fbphotobox-close-btn").height());
 
 			this.fbpMainContainer.css({
 				width: (leftContainer.width() + rightContainer.width()),
@@ -404,7 +406,7 @@
 	$.fn.fbPhotoBox.defaults = {
 		rightWidth: 360,
 		minLeftWidth: 520,
-		minHeight: 520,
+		minHeight: 600,
 		leftBgColor: "black",
 		rightBgColor: "white",
 		footerBgColor: "black",
@@ -412,11 +414,11 @@
 		overlayBgOpacity: 0.5,
 		onImageShow: function() {},
 		afterInitDOM: function() {},
-		imageOverlayFadeSpeed: 10,
+		imageOverlayFadeSpeed: 0,
 		normalModeMargin: 40,
 		containerClassName: 'fbphotobox',
 		imageClassName: 'fbphotobox-target-img'
 	};
 
 	module.exports = $;
-}());
+}( jQuery ));

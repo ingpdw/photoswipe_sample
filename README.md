@@ -2,6 +2,8 @@
 ### install
 * npm install
 
+* bower install
+
 #### node_modules/angular -> Modify package.json
 ```
 "main": "index.js",
