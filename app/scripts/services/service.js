@@ -7,9 +7,6 @@ module.exports = function( $http, $q, $util_ ) {
   factory.templateUrl = 'http://localhost:5000/views/';
   factory.dataUrl = 'http://localhost:5000/data';
 
-factory.staticUrl = 'http://172.20.12.100:5000';
-factory.templateUrl = 'http://172.20.12.100:5000/views/';
-factory.dataUrl = 'http://172.20.12.100:5000/data';
 
   function loadData( vid ){
     var deferred = $q.defer();
