@@ -21,10 +21,8 @@ module.exports = function( $s_ ) {
   			overlayBgColor: '#000000',
   			containerClassName: 'fbphotobox',
   			imageClassName: 'photo',
+        liClassName: 'keyword--items',
   			onImageShow: function(){
-
-          console.log( $( this )[ 0 ] );
-
   				$( '.fbphotobox-image-content' ).html('<div>'+ $( this ).attr( 'data-img-id' )+'</div>');
   			}
       });

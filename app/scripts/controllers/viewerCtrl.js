@@ -16,17 +16,10 @@ module.exports =  function( $scope, $s_ ) {
 
   //TODO test
   $scope.loadMore = function() {
-    console.log( dummmmmmmy );
     var load = $s_.loadData( ++dummmmmmmy );
     load.then(function( data ){
       $scope.items = $scope.items.concat( data );
     }, function(){
-    });
-  };
-
-  $scope.openViewer = function(){
-    $scope.$apply(function(){
-      $scope.photoSwipe.items = $scope.items;
     });
   };
 };

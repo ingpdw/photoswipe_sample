@@ -56,8 +56,12 @@
 			});
 
 			// Setup click trigger
-			$('.' + this.settings.containerClassName).on("click", "." + this.settings.imageClassName, function() {
-				$this.show($(this));
+			// $('.' + this.settings.containerClassName).on("click", "." + this.settings.imageClassName, function() {
+			// 	$this.show($(this));
+			// });
+
+			$('.' + this.settings.containerClassName).on("click", "." + this.settings.liClassName, function() {
+				$this.show($(this).find( 'img' ) );
 			});
 
 			// Handle left right click event
@@ -417,7 +421,8 @@
 		imageOverlayFadeSpeed: 0,
 		normalModeMargin: 40,
 		containerClassName: 'fbphotobox',
-		imageClassName: 'fbphotobox-target-img'
+		imageClassName: 'fbphotobox-target-img',
+		liClassName: 'keyword--items'
 	};
 
 	module.exports = $;
