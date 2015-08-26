@@ -1,0 +1,61 @@
+@import "compass";
+@import "normalize";
+@import "breakpoint";
+
+$font-family: "Apple SD 산돌고딕 Neo", "Apple SD Gothic Neo", "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", dotum, sans-serif;
+
+$color: (
+	white: #fff,
+	black: #000
+);
+
+$fontsize-default: 16px;
+@function em($px, $base: $fontsize-default){
+	@return ($px/$base) * 1em;
+}
+
+$breakpoint: (
+	bp480 : em(480px),  // mobile
+	bp640 : em(640px),  //
+	bp768 : em(768px),  // tablet
+	bp870 : em(870px),  //
+	bp960 : em(960px),  // desktop
+	bp1024: em(1024px), //
+	bp1280: em(1280px), //
+	bp1440: em(1440px), //
+	bp1600: em(1600px), //
+	bp2048: em(2048px)  // oversize
+);
+
+$fontsize: (
+	base: $fontsize-default,
+	title: em(45px)
+);
+
+// breakpoint
+@mixin set-bp($value){
+	@include breakpoint(map-get($breakpoint, $value)){
+		@content;
+	}
+}
+
+@mixin set-fs($value){
+	font-size: (map-get($fontsize, $value));
+}
+
+*, *:before, *:after {
+	@include box-sizing(border-box); 
+}
+
+.hidden { display: none; }
+
+.color {
+	&__white { color: map-get($color, white); }
+	&__black { color: map-get($color, black); }
+}
+
+.loading {
+	width: 32px;
+	margin: 0 auto;
+	padding: 50px 0;
+}
