@@ -6,17 +6,22 @@ body {
 	font-family: $font-family;
 }
 
+@function topPaddingRatio($option:0){
+	$width: 2000px;
+	$ratio: 0.325;
+
+	$height: ($width * $ratio)-$option;
+	$paddingTop: percentage($height / $width);	
+ 	
+	@return $paddingTop;
+}
+
+/* ==========================================================================
+   Layout
+   ========================================================================== */
 .container {
-	@include set-bp(bp480)  { padding-top: 0px; }
-	@include set-bp(bp640)  { padding-top: 26px; }
-	@include set-bp(bp768)  { padding-top: 67px; }
-	@include set-bp(bp870)  { padding-top: 107px; }
-	@include set-bp(bp960)  { padding-top: 142px; }
-	@include set-bp(bp1024) { padding-top: 162px; }
-	@include set-bp(bp1280) { padding-top: 252px; }
-	@include set-bp(bp1440) { padding-top: 311px; }
-	@include set-bp(bp1600) { padding-top: 23%; }
-	@include set-bp(bp2048) { padding-top: 26%; }
+	padding-top: topPaddingRatio(265px);
+	
 }
 
 .bg {
@@ -28,16 +33,20 @@ body {
 	img { width: 100%;}
 }
 
+
+/* ==========================================================================
+   Content
+   ========================================================================== */
 .keyword {
 	position: relative;
 	z-index: 2;
 	margin-bottom: em(160px);
-	&--wrap {
+	&--wrap { 
 		position: relative;
 		z-index: 2;
-		width: 300px;
+		width: 300px; 
 		margin: 0 auto;
-		@include set-bp(bp480)  { width: 450px; }
+		@include set-bp(bp480)  { width: 450px; } 
 		@include set-bp(bp640)  { width: 620px; }
 		@include set-bp(bp768)  { width: 748px; }
 		@include set-bp(bp870)  { width: 870px; }
@@ -48,10 +57,15 @@ body {
 		transition: width .3s ease-in;
 	}
 
+
+	/* title
+	   ========================================================================== */
+
 	&--title {
 		margin: 0;
+		line-height: 1.1em;
 		@include set-bp(bp768) {
-			@include set-fs(title);
+			@include set-fs(title);	
 		}
 	}
 
@@ -63,14 +77,16 @@ body {
 		color: #a1a1a1;
 	}
 
+
+	/* list
+	   ========================================================================== */
+
 	&--list {
-		margin: 20px 0 0;
+		margin: 18px 0 0;
 		padding: 0;
 		list-style: none;
 		@include pie-clearfix;
-		@include set-bp(bp768) {
-			margin: 60px 0 0;
-		}
+		@include set-bp(bp768) { margin: 60px 0 0; }
 	}
 
 	&--items {
@@ -128,6 +144,10 @@ body {
 }
 
 
+
+/* ==========================================================================
+   Layer
+   ========================================================================== */
 .slide {
 	position: relative;
 	width: 635px;
@@ -137,7 +157,7 @@ body {
 
 	@at-root &--image {
 		margin-right: 20px;
-	}
+	}  
 
 	@at-root .sponsor {
 		position: absolute;
@@ -162,12 +182,3 @@ body {
 		}
 	}
 }
-
-
-// viewer skin
-.pswp__bg { background-color: #000; }
-.pswp__top-bar,
-.pswp__caption {
-	background: none;
-}
-.pswp__button--close {}

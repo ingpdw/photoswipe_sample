@@ -8,13 +8,15 @@
 	top: 0px;
 	right: 0px;
 	bottom: 0px;
-	filter:blur(4px);
+	/*filter:blur(4px);
   -o-filter:blur(4px);
   -ms-filter:blur(4px);
   -moz-filter:blur(4px);
-  -webkit-filter:blur(4px);
+  -webkit-filter:blur(4px);*/
 }
-
+.fbphotobox-fc-main-container *{
+	box-sizing: border-box;
+}
 .fbphotobox-fc-main-container {
 	margin: auto;
 	position: fixed;
@@ -40,8 +42,8 @@
 	right:0px;
 	left:0px;
 	bottom:0px;
-	border:1px solid #000;
-	border-radius:2px;
+	/*border:1px solid #000;*/
+	/*border-radius:2px;*/
 }
 
 .fbphotobox-container-left {
@@ -50,21 +52,24 @@
 }
 
 .fbphotobox-container-left:hover {
-	cursor: pointer;
+	/*cursor: pointer;*/
 }
 
 .fbphotobox-container-left table td {
 	text-align: center;
-	vertical-align: middle;
+	/*vertical-align: middle;*/
+	vertical-align: top;
 	height: 100%
 }
 
 .fbphotobox-container-right {
+	position: relative;
 	float: right;
-	background-color: white;
+	z-index: 2;
+	/*background-color: white;*/
 }
 
-.fbphotobox-container-left-footer, .fbphotobox-container-left-footer-bg {
+/*.fbphotobox-container-left-footer, .fbphotobox-container-left-footer-bg {
 	position: absolute;
 	color: white;
 	left: 0px;
@@ -82,7 +87,7 @@
 	background-color: black;
 	opacity: 0.75;
 	height: 56px;
-}
+}*/
 
 .fbphotobox-container-left-header {
 	top: 0px;
@@ -93,22 +98,39 @@
 	z-index:500;
 }
 
-.left-arrow {
-	position: absolute;
-	height: 100%;
-	left: 10px;
-	top: 0px;
-}
-
+.left-arrow,
 .right-arrow {
 	position: absolute;
 	height: 100%;
-	right: 10px;
-	top: 0px;
+	top: 0;
+	cursor: pointer;
+}
+
+.left-arrow {
+	/*position: absolute;*/
+	/*height: 100%;*/
+	left: -127px;
+	/*top: 0px;*/
+}
+
+.right-arrow {
+	/*position: absolute;*/
+	/*height: 100%;*/
+	right: -127px;
+	/*top: 0px;*/
 }
 
 .fbphotobox-a {
-	opacity: 0.5;
+	position: relative;
+	z-index: 10;
+	display: block;
+	width: 112px;
+	height: 112px;
+	padding-top: 105px;
+	text-align: center;
+	background-repeat: no-repeat;
+	background-position: center 30px;
+	/*opacity: 0.5;*/
 }
 
 .fbphotobox-image-stage-overlay {
@@ -120,7 +142,7 @@
 	width:100px;
 	border-radius:3px;
 	opacity: 1;
-	background-image: url(../images/transparent.png);
+	background-image: url(/images/transparent.png);
 }
 
 .fbphotobox-tag div {
@@ -130,9 +152,10 @@
 }
 
 .fbphotobox-tag:hover {
-	border:3px solid white;
+	/*border:3px solid white;
 	box-shadow: 0px 0px 5px #333;
-	opacity: 0.70;
+	opacity: 0.70;*/
+	/*opacity: 1;*/
 }
 
 .fbphotobox-tag:hover div {
@@ -158,7 +181,7 @@ table, tr, td {
 }
 
 .fbphotobox-fc-btn {
-	background-image: url(../images/fullscreen.png);
+	background-image: url(/images/fullscreen.png);
 	background-repeat: no-repeat;background-size:auto;
 	background-position: 0 0;
 	display: block;
@@ -168,7 +191,8 @@ table, tr, td {
 
 .fbphotobox-image-content {
 	color:black;
-	overflow-y:scroll;
+	overflow:hidden;
+	/*overflow-y: auto;*/
 }
 
 .fbphotobox-fc-header {
@@ -194,31 +218,96 @@ table, tr, td {
 }
 
 .left-arrow .fbphotobox-a {
-	background-image: url(../images/Arrows-LWhite-icon.png);
+	background-image: url(/images/Arrows-LWhite-icon.png);
+	/*background-image: url(/images/Arrows-LWhite-icon.png);
 	background-repeat: no-repeat;
 	background-size:auto;
-	background-position: 0px 0px;
-	display: block;
+	background-position: 0px 0px;*/
+	/*display: block;
 	height: 48px;
-	width: 48px;
+	width: 48px;*/
 }
 
 .right-arrow .fbphotobox-a {
-	background-image: url(../images/Arrows-RWhite-icon.png);
+	background-image: url(/images/Arrows-RWhite-icon.png);
+	/*background-image: url(/images/Arrows-RWhite-icon.png);
 	background-repeat: no-repeat;
 	background-size:auto;
-	background-position: 0px 0px;
-	display: block;
+	background-position: 0px 0px;*/
+	/*display: block;
 	height: 48px;
-	width: 48px;
+	width: 48px;*/
 }
 
 .fc-left-arrow a {
-	background-image: url(../images/Arrows-LWhite-icon.png);
+	background-image: url(/images/Arrows-LWhite-icon.png);
 	float:left;background-repeat: no-repeat;background-size:auto;background-position: 0px 0px;height: 48px;width: 48px;
 }
 
 .fc-right-arrow a {
-	background-image: url(../images/Arrows-RWhite-icon.png);background-repeat: no-repeat;
+	background-image: url(/images/Arrows-RWhite-icon.png);background-repeat: no-repeat;
 	float:right;background-size:auto;background-position: 0px 0px;height: 48px;width: 48px;
+}
+
+.bg--arrow {
+	position: absolute;
+	width: 112px;
+	height: 112px;
+	border-radius: 56px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: 100% auto;
+	opacity: 0.6;
+	*opacity: 1;
+	z-index: -1;
+}
+@media \0screen { /* for IE8 */
+	.bg--arrow { background-position: 999em;}
+}
+/*.bg--arrow:after {
+	content: '';
+	position: absolute;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: 112px;
+	border-radius: 56px;
+	background-color: #000;
+	opacity: 0.6;
+}*/
+
+.keyword--text {
+	color: #fff;
+}
+
+.fbphotobox-close-btn {
+	position: fixed;
+	right: 28px;
+	top: 28px;
+}
+
+.product {
+	overflow-y: auto;
+	height: 100%;
+}
+.product--list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.product--list:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+.product--items {
+	float: left;
+	width: 115px;
+}
+.product--items img {
+	display: block;
+	max-width: 100%;
+	border: 0;
 }

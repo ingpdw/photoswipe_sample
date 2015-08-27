@@ -4,8 +4,6 @@
 	//
 	// require('jquery-ui');
 
-	console.log( $ );
-
 	function FBPhotoBox(opts) {
 		this.settings = $.extend({}, $.fn.fbPhotoBox.defaults, opts);
 		this.bodyDimension = {width:0,height:0};
@@ -22,14 +20,14 @@
 			var $this = this;
 			this.initDOM();
 			this.initSettings();
-			this.rightArrow = $(".right-arrow");
-			this.leftArrow = $(".left-arrow");
-			this.fbpMainImage = $(".fbphotobox-main-image");
-			this.fbpMainContainer = $(".fbphotobox-main-container");
-			this.fbpOverlay = $(".fbphotobox-overlay");
+			this.rightArrow = $( ".right-arrow" );
+			this.leftArrow = $( ".left-arrow" );
+			this.fbpMainImage = $( ".fbphotobox-main-image" );
+			this.fbpMainContainer = $( ".fbphotobox-main-container" );
+			this.fbpOverlay = $( ".fbphotobox-overlay" );
 			this.lazyLoadImage = new Image();
 			this.lazyLoadImage.onload = function() { $this.refreshBoxSize(this); };
-			this.fbpMainImage.bind("onFbBoxImageShow", this.settings.onImageShow);
+			this.fbpMainImage.bind( "onFbBoxImageShow" , this.settings.onImageShow);
 
 			// Prev & Next btn hover animation
 			$(".fbphotobox-a").hover(function() {
@@ -106,6 +104,7 @@
 			this.leftArrow.attr("data-prev-index", index - 1);
 			this.rightArrow.attr("data-next-index", index + 1);
 			this.fbpMainImage.attr('data-img-id', image.attr('data-img-id'));
+			this.fbpMainImage.attr('data-product-key', image.attr('data-product-key'));
 			this.fbpMainImage.attr('alt', image.attr('alt'));
 			this.fbpMainImage.posX = image.offset().left;
 			this.fbpMainImage.posY = image.offset().top;
@@ -131,6 +130,7 @@
 		},
 		initDOM: function() {
 			var html = ['<div class="fbphotobox-main-container">',
+							// left area
 							'<div class="fbphotobox-container-left">',
 								'<table class="fbphotobox-main-image-table"><tr><td>',
 									'<div class="tag-container"><img class="fbphotobox-main-image" src=""/></div>',
@@ -139,37 +139,50 @@
 									'<div class="fbphotobox-container-left-header">',
 										'<a title="Full Screen" class="fbphotobox-fc-btn fbphotobox-a"></a>',
 									'</div>',
-									'<div data-prev-index="" class="left-arrow">',
-										'<table style="height:100%"><tr><td style="vertical-align:middle;">',
-											'<a class="fbphotobox-a" title="Previous"></a>',
-										'</td></tr></table>',
-									'</div>',
-									'<div data-next-index="" class="right-arrow">',
-										'<table style="height:100%;"><tr><td style="vertical-align:middle;">',
-											'<a class="fbphotobox-a" title="Next"></a>',
-										'</td></tr></table>',
-									'</div>',
 									'<div class="fbphotobox-container-left-footer">',
 										'<div style="margin:20px;">',
-											'<span style="font-weight:bold;">Dummy Photo Caption</span>',
-											'<span style="color:#B3B3B3;"> in </span>',
-											'<span style="font-weight:bold;">Dummy Album Name</span>',
+
 										'</div>',
 									'</div>',
 									'<div class="fbphotobox-container-left-footer-bg"></div>',
 								'</div>',
 							'</div>',
+
+							// right area
 							'<div class="fbphotobox-container-right">',
-								'<div class="fbphotobox-close-btn">',
-									'<a title="Close" href="" style="float:right;margin:8px">',
-										'<img src="./libs/FBPhotoBox/images/close.png" style="height:10px;width:10px"/>',
-									'</a>',
-									'<div style="clear:both"></div>',
+								'<div class="fbphotobox-image-content">',
+									'<div class="product">',
+										'<ul id="viewer-product-list" class="product--list">',
+										'</ul>',
+									'</div>',
 								'</div>',
-								'<div class="fbphotobox-image-content"></div>',
 							'</div>',
 							'<div style="clear:both"></div>',
+
+							// arrow
+							'<div data-prev-index="" class="left-arrow">',
+								'<table style="height:100%"><tr><td style="vertical-align:middle;">',
+							  '<div id="prevArrow" class="bg--arrow"></div>',
+								'<a class="fbphotobox-a" title="Previous"><span class="keyword--text"></span></a>',
+								'</td></tr></table>',
+							'</div>',
+							'<div data-next-index="" class="right-arrow">',
+								'<table style="height:100%;"><tr><td style="vertical-align:middle;">',
+									'<div id="nextArrow" class="bg--arrow"></div>',
+									'<a class="fbphotobox-a" title="Next"><span class="keyword--text"></span></a>',
+								'</td></tr></table>',
+							'</div>',
+
+							// close
+							'<div class="fbphotobox-close-btn">',
+								'<a title="Close" href="">',
+									'<img src="/libs/FBPhotoBox/images/close.png" style="height:10px;width:10px"/>',
+								'</a>',
+								'<div style="clear:both"></div>',
+							'</div>',
 						'</div>',
+
+						// zoom
 						'<div class="fbphotobox-fc-main-container">',
 							'<div class="fbphotobox-fc-header">',
 								'<div style="float:left">Dummy Header</div>',
@@ -193,6 +206,9 @@
 							'</div>',
 							'<div class="fbphotobox-fc-footer">Dummy Footer<div style="clear:both"></div></div>',
 						'</div>',
+
+
+
 						'<div class="fbphotobox-overlay"></div>',
 						'<div style="clear:both"></div>'];
 			$("body").append(html.join(""));
@@ -239,6 +255,8 @@
 			var maxWidth = Math.max($(window).width() - this.settings.rightWidth - this.settings.normalModeMargin*2, this.settings.minLeftWidth);
 			var maxHeight = Math.max($(window).height() - this.settings.normalModeMargin*2, this.settings.minHeight);
 
+			//this.fbpMainImage.css("min-height",600);
+
 			if (imageHeight < maxHeight) {
 				leftContainer.height(imageHeight);
 				this.fbpMainImage.css("max-height",imageHeight);
@@ -257,7 +275,7 @@
 			}
 
 			rightContainer.css("height", leftContainer.height());
-			$(".fbphotobox-image-content").css("height", leftContainer.height() - $(".fbphotobox-close-btn").height());
+			$(".fbphotobox-image-content").css("height", leftContainer.height());
 
 			this.fbpMainContainer.css({
 				width: (leftContainer.width() + rightContainer.width()),

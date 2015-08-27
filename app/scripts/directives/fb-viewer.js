@@ -11,32 +11,38 @@ module.exports = function( $s_ ) {
   return {
     restrict: 'ACE',
     replace: true,
-    templateUrl: $s_.templateUrl + '/viewer.html',
+    //templateUrl: $s_.templateUrl + '/viewer.html',
     link: function(scope, element) {
-  		$( '.fbphotobox img' ).fbPhotoBox({
-  			rightWidth: 360,
-  			leftBgColor: '#000000',
-  			rightBgColor: '#ffffff',
-  			footerBgColor: '000000',
-  			overlayBgColor: '#000000',
+  		$(".fbphotobox img").fbPhotoBox({
+  			rightWidth: 247, // content size + scrollbar
+  			// minLeftWidth: 423,
+  			minHeight: 600,
+  			normalModeMargin: 40,
+  			leftBgColor: "transparent",
+  			rightBgColor: "transparent",
+  			footerBgColor: "transparent",
+  			overlayBgColor: "#000",
+  			overlayBgOpacity: 0.9,
+  			imageOverlayFadeSpeed: 150,
   			containerClassName: 'fbphotobox',
   			imageClassName: 'photo',
-        liClassName: 'keyword--items',
-  			onImageShow: function(){
-  				$( '.fbphotobox-image-content' ).html('<div>'+ $( this ).attr( 'data-img-id' )+'</div>');
+  			onImageShow: function() {
+          //var key = $( this ).data( 'product-key' )
+
+          var tmp = [], key =  $( this ).attr( 'data-product-key' ),
+              products = scope.products[ key ],
+              _template = '<li class="product--items"><a href="{{url}}"><img src="{{image}}" alt=""></a></li>';
+
+          $.each( products, function( idx, item ){
+              tmp.push( _template
+              .replace( /{{image}}/g, item.image.url )
+              .replace(/{{url}}/g, item.idx));
+          });
+
+  				$( '#viewer-product-list' ).empty().html( tmp.join( '' ) );
+
   			}
-      });
-
-      // scope.$watch( 'items', function( newValue, oldValue ){
-      //     photoSwipe.items.push( newValue );
-      //     photoSwipe.invalidateCurrItems();
-      //     photoSwipe.updateSize(true);
-      // });
-
-      // scope.$on( 'click.image', function( evt, elem, idx ){
-      //   swipeIdx = parseInt( idx ) || 0;
-      //   createPhotoSwipe( swipeIdx );
-      // });
+  		});
     }
   };
 };

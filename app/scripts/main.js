@@ -25,7 +25,7 @@ services.service( '$s_',
  * controllers
  */
 controllers.controller( 'viewerCtrl',
-  ['$scope', '$s_', require( './controllers/viewerCtrl' )]);
+  ['$scope', '$sce', '$s_', require( './controllers/viewerCtrl' )]);
 
 /*
  * directives

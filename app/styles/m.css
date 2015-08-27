@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/* ==========================================================================
+   Require 
+   ========================================================================== */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 /*! normalize.css v3.0.0 | HTML5 Display Definitions | MIT License | git.io/normalize */
 article,
@@ -227,6 +230,9 @@ th {
   padding: 0;
 }
 
+/* ==========================================================================
+   Set common
+   ========================================================================== */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -237,6 +243,19 @@ th {
   display: none;
 }
 
+.loading {
+  width: 32px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+/* ==========================================================================
+   Set fonts
+   ========================================================================== */
+/* font family
+   ========================================================================== */
+/* font color
+   ========================================================================== */
 .color__white {
   color: #fff;
 }
@@ -244,34 +263,34 @@ th {
   color: #000;
 }
 
-.loading {
-  width: 32px;
-  margin: 0 auto;
-  padding: 50px 0;
-}
-
+/* ==========================================================================
+   Set breakpoints
+   ========================================================================== */
 body {
   font-size: 100%;
   font-family: "Apple SD 산돌고딕 Neo", "Apple SD Gothic Neo", "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", dotum, sans-serif;
 }
 
-.keyword--list {
+/* ==========================================================================
+   list page
+   ========================================================================== */
+.style-list .keyword--list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-.keyword--list a {
+.style-list .keyword--list a {
   display: block;
 }
-.keyword--list figure {
+.style-list .keyword--list figure {
   position: relative;
   margin: 0;
 }
-.keyword--list figure img {
+.style-list .keyword--list figure img {
   display: block;
   width: 100%;
 }
-.keyword--list figure figcaption {
+.style-list .keyword--list figure figcaption {
   position: absolute;
   bottom: 30px;
   left: 15px;
@@ -279,7 +298,74 @@ body {
   font-size: 20px;
   line-height: 1.25em;
 }
-.keyword--list figure figcaption span {
+.style-list .keyword--list figure figcaption span {
   display: block;
   font-size: 11px;
+}
+
+/* ==========================================================================
+   view page
+   ========================================================================== */
+.style-view {
+  /* slide content
+     ========================================================================== */
+  /* owl plugin theme
+     ========================================================================== */
+  /* thumbnail content
+     ========================================================================== */
+}
+.style-view .slide--items {
+  width: 100%;
+}
+.style-view .slide--items img {
+  display: block;
+  width: 100%;
+}
+.style-view .owl-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  margin-top: -22.5px;
+}
+.style-view .owl-controls .owl-prev,
+.style-view .owl-controls .owl-next {
+  position: absolute;
+  width: 31px;
+  height: 55px;
+  background-image: url(/images/slide_buttons_m.png);
+  background-repeat: no-repeat;
+  background-size: 61px auto;
+  text-indent: -119988px;
+  overflow: hidden;
+  text-align: left;
+  text-transform: capitalize;
+}
+.style-view .owl-controls .owl-prev {
+  left: 0;
+  background-position: left top;
+}
+.style-view .owl-controls .owl-next {
+  right: 0;
+  background-position: right top;
+}
+.style-view .keyword--list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #222;
+  *zoom: 1;
+}
+.style-view .keyword--list:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.style-view .keyword--items {
+  float: left;
+  width: 33.3%;
+}
+.style-view .keyword--items img {
+  display: block;
+  width: 100%;
 }

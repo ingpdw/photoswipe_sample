@@ -5,31 +5,110 @@ body {
 	font-family: $font-family;
 }
 
-.keyword {
-	&--list {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		a { display: block; }
 
-		figure {
-			position: relative;
+/* ==========================================================================
+   list page
+   ========================================================================== */
+.style-list {
+	.keyword {
+		&--list {
 			margin: 0;
+			padding: 0;
+			list-style: none;
+			a { display: block; }
+
+			figure {
+				position: relative;
+				margin: 0;
+				img {
+					display: block;
+					width: 100%;
+				}
+				figcaption {
+					position: absolute;
+					bottom: 30px;
+					left: 15px;
+					font-weight: bold;
+					font-size: 20px;
+					line-height: em(20px);
+					span {
+						display: block;
+						font-size: 11px;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/* ==========================================================================
+   view page
+   ========================================================================== */
+.style-view {
+	/* slide content
+	   ========================================================================== */
+	.slide {
+		&--items {
+			width: 100%;
 			img {
 				display: block;
 				width: 100%;
 			}
-			figcaption {
-				position: absolute;
-				bottom: 30px;
-				left: 15px;
-				font-weight: bold;
-				font-size: 20px;
-				line-height: em(20px);
-				span {
-					display: block;
-					font-size: 11px;
-				}
+		}
+	}
+
+
+	/* owl plugin theme
+	   ========================================================================== */
+
+	.owl-controls {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		right: 0;
+		margin-top: -22.5px;
+		.owl-prev,
+		.owl-next {
+			position: absolute;
+			width: 31px;
+			height: 55px;
+			background-image: url(/images/slide_buttons_m.png);
+			background-repeat: no-repeat;
+			background-size: 61px auto;
+			@include hide-text;
+		}
+
+		.owl-prev {
+			left: 0;
+			background-position: left top;
+		}
+		.owl-next {
+			right: 0;
+			background-position: right top;
+		}
+
+	}
+
+
+	/* thumbnail content
+	   ========================================================================== */
+
+	.keyword {
+		&--list {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			background-color: #222;
+			@include pie-clearfix;
+		}
+
+		&--items {
+			float: left;
+			width: 33.3%;
+			img {
+				display: block;
+				width: 100%;
 			}
 		}
 	}

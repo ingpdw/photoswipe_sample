@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/* ==========================================================================
+   Require 
+   ========================================================================== */
 /*! normalize.css v3.0.0 | MIT License | git.io/normalize */
 /*! normalize.css v3.0.0 | HTML5 Display Definitions | MIT License | git.io/normalize */
 article,
@@ -227,6 +230,9 @@ th {
   padding: 0;
 }
 
+/* ==========================================================================
+   Set common
+   ========================================================================== */
 *, *:before, *:after {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -237,6 +243,19 @@ th {
   display: none;
 }
 
+.loading {
+  width: 32px;
+  margin: 0 auto;
+  padding: 50px 0;
+}
+
+/* ==========================================================================
+   Set fonts
+   ========================================================================== */
+/* font family
+   ========================================================================== */
+/* font color
+   ========================================================================== */
 .color__white {
   color: #fff;
 }
@@ -244,67 +263,20 @@ th {
   color: #000;
 }
 
-.loading {
-  width: 32px;
-  margin: 0 auto;
-  padding: 50px 0;
-}
-
+/* ==========================================================================
+   Set breakpoints
+   ========================================================================== */
 body {
   overflow-x: hidden;
   font-size: 100%;
   font-family: "Apple SD 산돌고딕 Neo", "Apple SD Gothic Neo", "나눔고딕", "NanumGothic", "맑은 고딕", "Malgun Gothic", "돋움", dotum, sans-serif;
 }
 
-@media (min-width: 30em) {
-  .container {
-    padding-top: 0px;
-  }
-}
-@media (min-width: 40em) {
-  .container {
-    padding-top: 26px;
-  }
-}
-@media (min-width: 48em) {
-  .container {
-    padding-top: 67px;
-  }
-}
-@media (min-width: 54.375em) {
-  .container {
-    padding-top: 107px;
-  }
-}
-@media (min-width: 60em) {
-  .container {
-    padding-top: 142px;
-  }
-}
-@media (min-width: 64em) {
-  .container {
-    padding-top: 162px;
-  }
-}
-@media (min-width: 80em) {
-  .container {
-    padding-top: 252px;
-  }
-}
-@media (min-width: 90em) {
-  .container {
-    padding-top: 311px;
-  }
-}
-@media (min-width: 100em) {
-  .container {
-    padding-top: 23%;
-  }
-}
-@media (min-width: 128em) {
-  .container {
-    padding-top: 26%;
-  }
+/* ==========================================================================
+   Layout
+   ========================================================================== */
+.container {
+  padding-top: 19.25%;
 }
 
 .bg {
@@ -318,10 +290,17 @@ body {
   width: 100%;
 }
 
+/* ==========================================================================
+   Content
+   ========================================================================== */
 .keyword {
   position: relative;
   z-index: 2;
   margin-bottom: 10em;
+  /* title
+     ========================================================================== */
+  /* list
+     ========================================================================== */
 }
 .keyword--wrap {
   position: relative;
@@ -372,6 +351,7 @@ body {
 }
 .keyword--title {
   margin: 0;
+  line-height: 1.1em;
 }
 @media (min-width: 48em) {
   .keyword--title {
@@ -386,7 +366,7 @@ body {
   color: #a1a1a1;
 }
 .keyword--list {
-  margin: 20px 0 0;
+  margin: 18px 0 0;
   padding: 0;
   list-style: none;
   *zoom: 1;
@@ -493,6 +473,9 @@ body {
   transition: width 0.1s ease, height 0.2s ease-out 0.1s;
 }
 
+/* ==========================================================================
+   Layer
+   ========================================================================== */
 .slide {
   position: relative;
   width: 635px;
@@ -534,13 +517,4 @@ body {
 .sponsor--items img {
   display: block;
   max-width: 100%;
-}
-
-.pswp__bg {
-  background-color: #000;
-}
-
-.pswp__top-bar,
-.pswp__caption {
-  background: none;
 }

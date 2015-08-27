@@ -12,35 +12,22 @@
 <body ng-app="viewer" ng-controller='viewerCtrl'
     infinite-scroll="loadMore()"
     infinite-scroll-distance="1"
+    infinite-scroll-disabled="isDisabledScroll"
     class="fbphotobox">
 
-<!--div class="container">
-  <section ng-repeat="section insections">
-    <div class="bg"><img src="{{section.image}}" alt=""></div>
-    <h2 class="keyword--title">{{section.title}}</h2>
-    <span class="keyword--date">{{section.date}}}</span>
-    <div class="keyword--wrap">
-    <ul class="keyword--list">
-      <li class="keyword--items" ng-repeat="item in section">
-        <span sb-image data-index="{{$index}}" data-img-id="{{$index}}"></span>
-      </li>
-    </ul>
-  </section>
-</div-->
-
-
 <div class="container">
-  <div class="bg"><img src="images/bg.jpg" alt=""></div>
+  <div class="bg"><img ng-src="{{stylebook[0].image.url}}" alt=""></div>
 
-  <section class="keyword">
-    <h2 class="keyword--title">남북 고위급 회담<br>전례없는 '무박 3일' 강행군...</h2>
-    <span class="keyword--date">2015.8.19 - 8.24</span>
+  <section class="keyword" ng-repeat="section in stylebook">
     <div class="keyword--wrap">
-    <ul class="keyword--list">
-      <li class="keyword--items" ng-repeat="item in items">
-        <span sb-image data-index="{{$index}}" data-img-id="{{$index}}"></span>
-      </li>
-    </ul>
+      <h2 class="keyword--title color__{{section.color}}" ng-bind-html="section.keyword"></h2>
+      <span class="keyword--date" ng-bind="section.date"></span>
+
+      <ul class="keyword--list">
+        <li class="keyword--items" ng-repeat="item in section._customImages">
+          <span sb-image></span>
+        </li>
+      </ul>
     </div>
   </section>
 </div>

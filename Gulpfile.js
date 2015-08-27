@@ -1,6 +1,7 @@
 'use strict';
 
-var gulp = require('gulp'),
+var fs = require('fs'),
+    gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     browserify = require('gulp-browserify'),
     concat = require('gulp-concat'),
@@ -16,37 +17,7 @@ var express = require('express'),
     livereloadport = 35729,
     serverport = 5000;
 
-var server = express();
-server.use(livereload({port: livereloadport}));
-server.use(express.static('./dist'));
-server.get('/data', function(req, res) {
-  var i = 1, len = 20, four = 4, tempData = [];
-  var _size = [
-    {w: '633', h: '633'},
-    {w: '949', h: '633'},
-    {w: '919', h: '613'},
-    {w: '919', h: '613'}
-  ];
-
-  for( ;len > i; i++ ){
-    var m = i % four,
-        s = _size[ m ];
-
-    tempData.push({
-      src: '/temp/temp'+ m +'.jpg',
-      w: s.w,
-      h: s.h
-    })
-  };
-
-  res.json( tempData );
-});
-
-server.get('/', function(req, res) {
-  res.sendfile('index.html', { root: 'dist' });
-});
-
-gulp.task('live', ['views', 'temp', 'lint', 'browserify'], function() {});
+gulp.task('live', ['views', 'temp', 'lint', 'browserify', 'browserify-mobile'], function() {});
 gulp.task('clean', function() {
 	gulp.src('./dist/views', { read: false }) // much faster
   .pipe(rimraf({force: true}));
@@ -69,10 +40,8 @@ gulp.task('compass', function() {
     .pipe(gulp.dest('app/styles/'));
 });
 
-
 // Browserify task
 gulp.task('browserify', function() {
-  // Single point of entry (make sure not to src ALL your files, browserify will figure it out)
   gulp.src(['app/scripts/main.js'])
   .pipe(browserify({
     insertGlobals: true,
@@ -83,9 +52,27 @@ gulp.task('browserify', function() {
   .pipe(gulp.dest('dist/js'));
 });
 
+// Browserify task
+gulp.task('browserify-mobile', function() {
+  gulp.src(['app/scripts/mobile.js'])
+  .pipe(browserify({
+    insertGlobals: true,
+    debug: false
+  }))
+  .pipe(concat('bundle-mobile.js'))
+  //.pipe(uglify())
+  .pipe(gulp.dest('dist/js'));
+});
+
 // Views task
 gulp.task('views', function() {
   gulp.src('app/index.html')
+  .pipe(gulp.dest('dist/'));
+
+  gulp.src('app/mobile.html')
+  .pipe(gulp.dest('dist/'));
+
+  gulp.src('app/mobile_view.html')
   .pipe(gulp.dest('dist/'));
 
   gulp.src('app/views/**/*')
@@ -115,14 +102,15 @@ gulp.task('watch', ['lint'], function() {
 
   gulp.watch(['app/scripts/*.js', 'app/scripts/**/*.js', 'app/libs/**/*'],[
     'lint',
-    'browserify'
+    'browserify',
+    'browserify-mobile'
   ]);
 
   gulp.watch(['app/styles/**/*.scss'], [
     'compass'
   ]);
 
-  gulp.watch(['app/**/*.html', 'app/styles/**/*','app/libs/**/*' ], [
+  gulp.watch(['app/**/*.html', 'app/styles/**/*','app/libs/**/*.js' ], [
     'views'
   ]);
 
@@ -130,3 +118,34 @@ gulp.task('watch', ['lint'], function() {
 });
 
 gulp.task('default', ['live', 'watch']);
+
+var server = express();
+server.use(livereload({port: livereloadport}));
+server.use(express.static('./dist'));
+
+server.get('/mlist', function(req, res){
+  var tempData = JSON.parse( fs.readFileSync('./testData/_tmp_mobile_list.json', 'utf8') );
+  res.json( tempData );
+});
+
+server.get('/mdetail', function(req, res) {
+  var tempData = JSON.parse( fs.readFileSync('./testData/_tmp_mobile_detail.json', 'utf8') );
+  res.json( tempData );
+});
+
+server.get('/data', function(req, res) {
+  var tempData = JSON.parse( fs.readFileSync('./testData/_tmp_pc_list.json', 'utf8') );
+  res.json( tempData );
+});
+
+server.get('/', function(req, res) {
+  res.sendfile('index.html', { root: 'dist' });
+});
+
+server.get('/mobile', function(req, res) {
+  res.sendfile('mobile.html', { root: 'dist' });
+});
+
+server.get('/mobile_view', function(req, res) {
+  res.sendfile('mobile_view.html', { root: 'dist' });
+});
