@@ -6,13 +6,15 @@ module.exports = function( $http, $q, $util_ ) {
   factory.staticUrl = 'http://localhost:5000';
 
   //PC API
-  factory.dataUrl = 'http://localhost:5000/data';
+  factory.dataUrl = factory.staticUrl + '/data';
 
   //mobile list API
-  factory.mobileUrl = 'http://localhost:5000/mlist';
+  factory.mobileUrl = factory.staticUrl + '/mlist';
 
   //mobile view API
-  factory.mobileViewUrl = 'http://localhost:5000/mdetail';
+  factory.mobileViewUrl = factory.staticUrl + '/mdetail';
+
+
 
   //mobile
   function loadList( page ){

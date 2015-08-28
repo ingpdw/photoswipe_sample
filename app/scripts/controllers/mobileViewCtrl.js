@@ -20,7 +20,6 @@ module.exports =  function( $scope, $sce, $s_ ) {
   //$scope.products = new Map();
   $scope.products = {};
 
-
   $scope.loadView = function() {
     var load = $s_.loadView( ++dummmmmmmy );
     load.then(function( data ){
@@ -35,9 +34,6 @@ module.exports =  function( $scope, $sce, $s_ ) {
       });
 
       $scope.views = $scope.views.concat( temp );
-
-
-      console.log( $scope.views );
     }, function(){
     });
   }
@@ -46,10 +42,7 @@ module.exports =  function( $scope, $sce, $s_ ) {
     var load = $s_.loadList( ++dummmmmmmy );
     load.then(function( data ){
 
-
       var _list = data.list;
-
-      console.log( _list );
 
       if( data.isLast ){
         $scope.isDisabledScroll = true;

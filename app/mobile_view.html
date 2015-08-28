@@ -28,19 +28,15 @@
     <div ng-repeat="view in views">
       <div ng-if="view.type == 'images'">
         <div id="slide{{$index}}" class="slide--wrap">
-          <div mobile-carousel ng-repeat="item in view.item"></div>
+          <div mobile-carousel data-parent-index="{{$parent.$index}}" ng-repeat="item in view.item"></div>
         </div>
       </div>
-
       <div ng-if="view.type == 'products'">
         <ul class="keyword--list">
           <li mobile-list ng-repeat="item in view.item"></li>
         </ul>
       </div>
     </div>
-
-
-
   </div> <!-- //.container -->
 
   <div id="infscr-loading" class="loading"  ng-show='busy'>
