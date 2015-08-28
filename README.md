@@ -2,7 +2,7 @@
 ### install
 * npm install
 
-* bower install
+* ~~bower install~~
 
 #### node_modules/angular -> Modify package.json
 ```
