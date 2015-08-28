@@ -30,8 +30,6 @@ module.exports =  function( $scope, $sce, $s_ ) {
 
       var _list = data.list;
 
-      console.log( _list );
-
       if( data.isLast ){
         $scope.isDisabledScroll = true;
       }

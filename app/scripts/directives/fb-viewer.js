@@ -29,9 +29,6 @@ module.exports = function( $s_ ) {
   			imageClassName: 'photo',
   			onImageShow: function() {
 
-          console.log( scope );
-          console.log( $( this ) );
-
           //var image = $('.' + $this.settings.containerClassName + ' .' + $this.settings.imageClassName).get($this.leftArrow.attr("data-prev-index"));
 
           //var key = $( this ).data( 'product-key' )
