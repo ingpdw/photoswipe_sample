@@ -162,13 +162,13 @@
 							// arrow
 							'<div data-prev-index="" class="left-arrow">',
 								'<table style="height:100%"><tr><td style="vertical-align:middle;">',
-							  '<div id="prevArrow" class="bg--arrow"></div>',
+							  '<div class="prevArrow bg--arrow"></div>',
 								'<a class="fbphotobox-a" title="Previous"><span class="keyword--text"></span></a>',
 								'</td></tr></table>',
 							'</div>',
 							'<div data-next-index="" class="right-arrow">',
 								'<table style="height:100%;"><tr><td style="vertical-align:middle;">',
-									'<div id="nextArrow" class="bg--arrow"></div>',
+									'<div class="nextArrow bg--arrow"></div>',
 									'<a class="fbphotobox-a" title="Next"><span class="keyword--text"></span></a>',
 								'</td></tr></table>',
 							'</div>',
@@ -303,7 +303,19 @@
 					this.IsDisplayed = true;
 				}
 
-				this.fbpMainImage.show(10000, function() { $(this).trigger("onFbBoxImageShow"); });
+				var This = this;
+				this.fbpMainImage.show(10000, function() {
+
+					$(this).trigger("onFbBoxImageShow");
+
+					var prevImage = $( $('.' + This.settings.containerClassName + ' .' + This.settings.imageClassName).get(This.leftArrow.attr("data-prev-index")) );
+					var nextImage = $( $('.' + This.settings.containerClassName + ' .' + This.settings.imageClassName).get(This.rightArrow.attr("data-next-index")) );
+
+					$( '.left-arrow .prevArrow' ).css('background-image', 'url(' + prevImage.attr( 'src' ) + ')');
+					$( '.right-arrow .nextArrow' ).css('background-image', 'url(' + nextImage.attr( 'src' ) + ')');
+					$( '.left-arrow .keyword--text' ).text( prevImage.attr( 'alt' ) );
+					$( '.right-arrow .keyword--text' ).text( nextImage.attr( 'alt' ) );
+				});
 
 				//handle left right arrow
 				var index = parseInt(this.fbpMainImage.attr('fbp-index'));

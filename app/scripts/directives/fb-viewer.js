@@ -13,6 +13,7 @@ module.exports = function( $s_ ) {
     replace: true,
     //templateUrl: $s_.templateUrl + '/viewer.html',
     link: function(scope, element) {
+
   		$(".fbphotobox img").fbPhotoBox({
   			rightWidth: 247, // content size + scrollbar
   			// minLeftWidth: 423,
@@ -27,10 +28,15 @@ module.exports = function( $s_ ) {
   			containerClassName: 'fbphotobox',
   			imageClassName: 'photo',
   			onImageShow: function() {
-          //var key = $( this ).data( 'product-key' )
 
-          var tmp = [], key =  $( this ).attr( 'data-product-key' ),
-              products = scope.products[ key ],
+          console.log( scope );
+          console.log( $( this ) );
+
+          //var image = $('.' + $this.settings.containerClassName + ' .' + $this.settings.imageClassName).get($this.leftArrow.attr("data-prev-index"));
+
+          //var key = $( this ).data( 'product-key' )
+          var key =  $( this ).attr( 'data-product-key' ),
+              tmp = [], products = scope.products[ key ],
               _template = '<li class="product--items"><a href="{{url}}"><img src="{{image}}" alt=""></a></li>';
 
           $.each( products, function( idx, item ){
