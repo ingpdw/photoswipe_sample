@@ -128,6 +128,7 @@
 			this.photoTransitionAnimation(tmpNode, from, to, function() { tmpNode.remove(); });
 			this.displayScroll();
 		},
+
 		initDOM: function() {
 			var html = ['<div class="fbphotobox-main-container">',
 							// left area
