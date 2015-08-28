@@ -17,7 +17,7 @@ module.exports = angular;
 
 ### run
 * npm install gulp -g
-* gulp dev
+* ~~gulp dev~~
 * gulp
 
 * connections to http://localhost:5000
