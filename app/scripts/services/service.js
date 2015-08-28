@@ -14,8 +14,6 @@ module.exports = function( $http, $q, $util_ ) {
   //mobile view API
   factory.mobileViewUrl = factory.staticUrl + '/mdetail';
 
-
-
   //mobile
   function loadList( page ){
     var deferred = $q.defer();
