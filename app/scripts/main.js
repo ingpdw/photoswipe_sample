@@ -41,6 +41,3 @@ directives.directive( 'sbViewer',
 
 directives.directive( 'sbMainBg',
   ['$s_', require( './directives/mainBg' )]);
-
-// directives.directive( 'sbViewer',
-//   ['$s_', require( './directives/viewer' )]);
