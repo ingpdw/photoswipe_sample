@@ -28,13 +28,11 @@ body {
 					position: absolute;
 					bottom: 30px;
 					left: 15px;
-					font-weight: bold;
-					font-size: 20px;
-					line-height: em(20px);
-					span {
-						display: block;
-						font-size: 11px;
-					}
+					font-weight: bold;					
+					line-height: em(22px);
+					span { display: block; }
+					.keyword--title { font-size: 20px; }
+					.keyword--date  { font-size: 11px; }
 				}
 			}
 		}
@@ -80,11 +78,11 @@ body {
 		}
 
 		.owl-prev {
-			left: 0;
+			left: 8px;
 			background-position: left top;
 		}
 		.owl-next {
-			right: 0;
+			right: 8px;
 			background-position: right top;
 		}
 

@@ -177,7 +177,7 @@
 							// close
 							'<div class="fbphotobox-close-btn">',
 								'<a title="Close" href="">',
-									'<img src="/libs/FBPhotoBox/images/close.png" style="height:10px;width:10px"/>',
+									'<img src="/images/close.png" alt="close" />',
 								'</a>',
 								'<div style="clear:both"></div>',
 							'</div>',
@@ -186,8 +186,7 @@
 						// zoom
 						'<div class="fbphotobox-fc-main-container">',
 							'<div class="fbphotobox-fc-header">',
-								'<div style="float:left">Dummy Header</div>',
-								'<a class="fbphotobox-fc-close-btn" href="">Exit</a>',
+								'<a class="fbphotobox-fc-close-btn" href=""><img src="/images/close.png" alt="close"/></a>',
 								'<div style="clear:both"></div>',
 							'</div>',
 							'<div style="position:fixed;top:0px;right:0px;left:0px;bottom:0px;margin:auto;">',

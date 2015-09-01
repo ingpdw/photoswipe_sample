@@ -295,11 +295,15 @@ body {
   bottom: 30px;
   left: 15px;
   font-weight: bold;
-  font-size: 20px;
-  line-height: 1.25em;
+  line-height: 1.375em;
 }
 .style-list .keyword--list figure figcaption span {
   display: block;
+}
+.style-list .keyword--list figure figcaption .keyword--title {
+  font-size: 20px;
+}
+.style-list .keyword--list figure figcaption .keyword--date {
   font-size: 11px;
 }
 
@@ -342,11 +346,11 @@ body {
   text-transform: capitalize;
 }
 .style-view .owl-controls .owl-prev {
-  left: 0;
+  left: 8px;
   background-position: left top;
 }
 .style-view .owl-controls .owl-next {
-  right: 0;
+  right: 8px;
   background-position: right top;
 }
 .style-view .keyword--list {
