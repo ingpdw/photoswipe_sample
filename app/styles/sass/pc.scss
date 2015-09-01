@@ -20,15 +20,17 @@ body {
    Layout
    ========================================================================== */
 .container {
-	padding-top: topPaddingRatio(265px);	
-	@include set-bp(bp480)  { padding-top: topPaddingRatio(265px); } 
-	@include set-bp(bp640)  { padding-top: topPaddingRatio(265px); }
-	@include set-bp(bp768)  { padding-top: topPaddingRatio(265px); }
-	@include set-bp(bp870)  { padding-top: topPaddingRatio(265px); }
-	@include set-bp(bp960)  { padding-top: topPaddingRatio(265px); }
-	@include set-bp(bp1024) { padding-top: topPaddingRatio(265px); }
-	@include set-bp(bp1280) { padding-top: topPaddingRatio(265px); }
-	@include set-bp(bp1440) { padding-top: topPaddingRatio(265px); }
+	padding-top: topPaddingRatio(43px);
+	@include set-bp(bp480)  { padding-top: topPaddingRatio(64px); } 
+	@include set-bp(bp640)  { padding-top: topPaddingRatio(85px); }
+	@include set-bp(bp768)  { padding-top: topPaddingRatio(102px); }
+	@include set-bp(bp870)  { padding-top: topPaddingRatio(116px); }
+	@include set-bp(bp960)  { padding-top: topPaddingRatio(128px); }
+	@include set-bp(bp1024) { padding-top: topPaddingRatio(136px); }
+	@include set-bp(bp1280) { padding-top: topPaddingRatio(170px); }
+	@include set-bp(bp1440) { padding-top: topPaddingRatio(191px); }
+	@include set-bp(bp1600) { padding-top: topPaddingRatio(212px); }
+	@include set-bp(bp2048) { padding-top: topPaddingRatio(265px); }
 }
 
 .bg {
