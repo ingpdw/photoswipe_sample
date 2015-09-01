@@ -12,6 +12,8 @@ module.exports =  function( $scope, $sce, $s_ ) {
 
   $scope.productsKey = 0;
 
+  $scope.sectionsKey = 0;
+
   $scope.isDisabledScroll = false;
 
   //image별 products Map
@@ -35,6 +37,7 @@ module.exports =  function( $scope, $sce, $s_ ) {
 
         //keyword converting(html String)
         section.keyword  = $sce.trustAsHtml( section.keyword );
+        section.sectionsKey = ++$scope.sectionsKey;
 
         $.each( _sectionStyles, function( idx, item ){
           var key = 'product-' + ( ++$scope.productsKey );

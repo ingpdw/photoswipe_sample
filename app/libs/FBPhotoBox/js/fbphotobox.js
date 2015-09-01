@@ -309,13 +309,26 @@
 
 					$(this).trigger("onFbBoxImageShow");
 
-					var prevImage = $( $('.' + This.settings.containerClassName + ' .' + This.settings.imageClassName).get(This.leftArrow.attr("data-prev-index")) );
+					var currImage = $( $('.' + This.settings.containerClassName + ' .' + This.settings.imageClassName).get(This.fbpMainImage.attr("fbp-index") ) );
+					var prevImage = $( $('.' + This.settings.containerClassName + ' .' + This.settings.imageClassName).get(This.leftArrow.attr("data-prev-index") ) );
 					var nextImage = $( $('.' + This.settings.containerClassName + ' .' + This.settings.imageClassName).get(This.rightArrow.attr("data-next-index")) );
 
-					$( '.left-arrow .prevArrow' ).css('background-image', 'url(' + prevImage.attr( 'src' ) + ')');
-					$( '.right-arrow .nextArrow' ).css('background-image', 'url(' + nextImage.attr( 'src' ) + ')');
-					$( '.left-arrow .keyword--text' ).text( prevImage.attr( 'alt' ) );
-					$( '.right-arrow .keyword--text' ).text( nextImage.attr( 'alt' ) );
+					if( currImage.attr( 'data-section-key' ) == prevImage.attr( 'data-section-key' ) ){
+						$( '.left-arrow .prevArrow' ).css( 'background-image', 'none' );
+						$( '.left-arrow .keyword--text' ).html( '' );
+					}else{
+						$( '.left-arrow .prevArrow' ).css('background-image', 'url(' + prevImage.attr( 'src' ) + ')');
+						$( '.left-arrow .keyword--text' ).html( prevImage.attr( 'alt' ) );
+					}
+
+					if( currImage.attr( 'data-section-key' ) == nextImage.attr( 'data-section-key' ) ){
+						$( '.right-arrow .nextArrow' ).css( 'background-image', 'none' );
+						$( '.right-arrow .keyword--text' ).html( '' );
+					}else{
+						$( '.right-arrow .nextArrow' ).css('background-image', 'url(' + nextImage.attr( 'src' ) + ')');
+						$( '.right-arrow .keyword--text' ).html( nextImage.attr( 'alt' ) );
+					}
+
 				});
 
 				//handle left right arrow
