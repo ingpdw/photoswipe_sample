@@ -22,6 +22,11 @@ module.exports = angular;
 
 * connections to http://localhost:5000
 
+### sass
+* install ruby
+* gem install compass
+* gem install compass-normalize
+* gem install breakpoint
 
 ### Issue
 * Support for IE8 version used angular1.2.28

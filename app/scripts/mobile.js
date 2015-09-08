@@ -14,7 +14,6 @@ angular.module( 'viewer',
 /*
  * services
  */
-
 services.service( '$util_',
  require( './services/util' ));
 
